@@ -15,8 +15,10 @@
         </div><!-- /.container-fluid -->
     </div>
 
+    <!-- Menu del contenido -->
     <div class="content">
         <div class="container-fluid">
+
             <div class="row">
                 <div class="col-lg-12">
 
@@ -27,6 +29,7 @@
                     </div>
                     <div class="card">
                         <div class="card-body">
+
                             <h4 class="card-title">
                                 <b>componentName | PageTitle</b>
                             </h4>
@@ -36,8 +39,9 @@
                                     <div class="col-md-8 offset-md-2">
                                         <form action="simple-results.html">
                                             <div class="input-group">
-                                                <input type="search" class="form-control form-control-lg"
-                                                       placeholder="Buscar">
+                                                <input type="text" wire:model="searchTerm"
+                                                       class="form-control form-control-lg"
+                                                       placeholder="Buscar...">
                                                 <div class="input-group-append">
                                                     <button type="submit" class="btn btn-lg btn-default">
                                                         <i class="fa fa-search"></i>
@@ -56,7 +60,7 @@
                                     <th scope="col">Email</th>
                                     <th scope="col">Roles</th>
                                     <th scope="col">Estactud</th>
-                                    <th scope="col">Option</th>
+                                    <th scope="col">Accion</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -64,53 +68,66 @@
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td class="text-center"><span>
-                                            <img src="" alt="" height="70" width="80"
-                                                 class="round">
+                                            <img src="https://icons.veryicon.com/png/o/business/multi-color-financial-and-business-icons/user-139.png" class="rounded-lg mr-2" alt="" width="34"
+                                                 class="w-space-no">
                                         </span>{{ $user->name }}</td>
 
                                     <td>{{$user->email}}</td>
-                                    <td>@mdo</td>
-                                    <td>Administrador</td>
+                                    <td>{{$user->profile}}</td>
+                                    <td><div class="d-flex align-items-center">
+                                        <i class="fa fa-circle text-success mr-1"></i>
+                                            {{$user->status}}
+                                        </div></td>
                                     <td class="text-center">
-                                        <a href="" class="btn btn-primary" title="Edit">
-                                            <i class="fas fa-user-edit m-2"></i>
+
+                                        <a href="" wire:click.prevent="edit({{ $user }})"
+                                           class="btn btn-primary" title="Edit">
+                                            <i class="fas fa-user-edit mr-2"></i>
                                         </a>
-                                        <a href="" class="btn btn-danger" title="delete">
-                                            <i class="fas fa-trash m-2"></i>
+
+                                        <a href="" wire:click.prevent="confirmUserRemoval({{ $user->id }})"
+                                           class="btn btn-danger" title="delete">
+                                            <i class="fas fa-trash mr-2"></i>
                                         </a>
+
                                     </td>
                                 </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-
+                            <div class="card-footer d-flex justify-content-end">
+                                {{ $users->links() }}
+                            </div>
                         </div>
                     </div>
-
-
-
                 </div>
                 <!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content -->
     </div>
+
+    <!-- /.modal -->
     <div class="modal fade" id="form" tabindex="1" role="dialog"
          aria-labelledby="exampleModalLabel" aria-hidden="true" wire:ignore.self>
         <div class="modal-dialog modal-lg" role="document">
-            <form autocomplete="off" wire:submit.prevent="createUser">
+            <form autocomplete="off" wire:submit.prevent="{{ $showEditModal ? 'updateUser' :
+                'createUser' }}">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel">Agregar nuevo usuario</h4>
+                    <h4 class="modal-title" id="exampleModalLabel">
+                        @if($showEditModal)
+                        <span>Edit usuario</span>
+                        @else
+                        <span>Agregar nuevo usuario</span>
+                        @endif
+                    </h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-
-
                         <div class="card-body">
-
                             <div class="form-group">
                                 <label for="name">Nombre</label>
                                 <input type="text" wire:model.defer="state.name" class="form-control
@@ -168,8 +185,16 @@
 
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        <i class="fa-times mr-1"></i>Cancelar</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-save mr-1"></i>
+                        @if($showEditModal)
+                    <span>Guardar Cambios</span>
+                        @else
+                    <span>Guardar</span>
+                        @endif
+                    </button>
                 </div>
             </div>
             </form>
@@ -177,5 +202,28 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
+
+    <!-- /.modal -->
+    <div class="modal fade" id="confirmationModal" tabindex="1" role="dialog"
+         aria-labelledby="exampleModalLabel" aria-hidden="true" wire:ignore.self>
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Eliminar usuario</h5>
+                </div>
+                <div class="modal-body">
+                    <h4>Esta seguro que de sea eliminar este usuario?</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        <i class="fa-times mr-1"></i>Cancelar</button>
+                    <button type="button" wire:click.prevent="deleteUser" class="btn btn-danger">
+                        <i class="fa fa-trash mr-1">Eliminar user</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- /.modal-dialog -->
 </div>
 

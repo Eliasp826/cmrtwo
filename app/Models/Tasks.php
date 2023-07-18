@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tasks extends Model
 {
     use HasFactory;
-    use softDeletes;
+
     protected $fillable = [
         'name',
         'description',
@@ -18,6 +18,7 @@ class Tasks extends Model
         'client_id',
         'project_id'
     ];
+    public const STATUS = ['Abierto', 'En Progreso', 'Cancelado', 'Completado'];
     public function user()
     {
         return $this->belongsTo(User::class)->withDefault();

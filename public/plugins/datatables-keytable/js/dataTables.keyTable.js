@@ -233,7 +233,7 @@ $.extend( KeyTable.prototype, {
 				// Or an Editor date input
 				if (
 					$(e.target).parents('div.editor-datetime').length ||
-					$(e.target).parents('div.dt-datetime').length 
+					$(e.target).parents('div.dt-datetime').length
 				) {
 					return;
 				}
@@ -520,7 +520,7 @@ $.extend( KeyTable.prototype, {
 	{
 		// If nothing focused, we can't take any action
 		if (! this.s.lastFocus) {
-			return;	
+			return;
 		}
 
 		// DataTables draw event
@@ -690,7 +690,7 @@ $.extend( KeyTable.prototype, {
 				.rows( { filter: 'applied', order: 'applied' } )
 				.indexes()
 				.indexOf( index.row );
-			
+
 			// Don't focus rows that were filtered out.
 			if ( row < 0 ) {
 				return;
@@ -996,7 +996,7 @@ $.extend( KeyTable.prototype, {
 		if ( ! last ) {
 			return;
 		}
-	
+
 		var currentCell  = last.cell;
 		if ( ! currentCell ) {
 			return;
@@ -1069,7 +1069,7 @@ $.extend( KeyTable.prototype, {
 
 
 	/**
-	 * Create and insert a hidden input element that can receive focus on behalf
+	 * CreateProject and insert a hidden input element that can receive focus on behalf
 	 * of the table
 	 *
 	 * @private
@@ -1098,7 +1098,7 @@ $.extend( KeyTable.prototype, {
 
 			div.children().on( 'focus', function (e) {
 				var cell = dt.cell(':eq(0)', that._columns(), {page: 'current'});
-	
+
 				if ( cell.any() ) {
 					that._focus( cell, null, true, e );
 				}

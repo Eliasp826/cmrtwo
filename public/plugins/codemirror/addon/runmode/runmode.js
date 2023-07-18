@@ -15,7 +15,7 @@ CodeMirror.runMode = function(string, modespec, callback, options) {
   var mode = CodeMirror.getMode(CodeMirror.defaults, modespec);
   var tabSize = (options && options.tabSize) || CodeMirror.defaults.tabSize;
 
-  // Create a tokenizing callback function if passed-in callback is a DOM element.
+  // CreateProject a tokenizing callback function if passed-in callback is a DOM element.
   if (callback.appendChild) {
     var ie = /MSIE \d/.test(navigator.userAgent);
     var ie_lt9 = ie && (document.documentMode == null || document.documentMode < 9);
@@ -46,7 +46,7 @@ CodeMirror.runMode = function(string, modespec, callback, options) {
           pos = idx + 1;
         }
       }
-      // Create a node with token style and append it to the callback DOM element.
+      // CreateProject a node with token style and append it to the callback DOM element.
       if (style) {
         var sp = node.appendChild(document.createElement("span"));
         sp.className = "cm-" + style.replace(/ +/g, " cm-");

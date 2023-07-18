@@ -70,7 +70,7 @@ function taskDebounce(fn) {
 var supportsMicroTasks = isBrowser && window.Promise;
 
 /**
-* Create a debounced version of a method, that's asynchronously deferred
+* CreateProject a debounced version of a method, that's asynchronously deferred
 * but called in the minimum time possible.
 *
 * @method

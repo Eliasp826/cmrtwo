@@ -37,7 +37,7 @@
                      with font-awesome or any other icon font library -->
 
                 <li class="nav-item menu-open">
-                    <a href="#" class="nav-link active">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Panel de control
@@ -60,7 +60,7 @@
                     </ul>
                 </li>
                 <li class="nav-item menu-open">
-                    <a href="#" class="nav-link active">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Gestor Usuario
@@ -69,8 +69,8 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('admin.usuarios') }}" class="nav-link {{ request()->is
-                                 ('admin/usuarios')? 'active' : '' }}">
+                            <a href="{{ route('admin.usuarios') }}" class="nav-link{{ request()->is
+                                 ('admin/usuarios') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th-list m-1"></i>
                                 <p>Lista Usuarios
                                     <span class="right badge badge-danger">New</span>
@@ -87,7 +87,8 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('client.manager') }}" class="nav-link" {{ request()->is
+                        ('client.manager') ? 'active' : ''}}>
                         <i class="nav-icon fas fa-user-astronaut"></i>
                         <p>
                            Clientes
@@ -96,7 +97,18 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{route('tarea.pendiente')}}" class="nav-link" {{ request()->is
+                        ('client.manager') ? 'active' : ''}}>
+                        <i class="nav-icon fas fa-user-astronaut"></i>
+                        <p>
+                            Tarea
+                            <span class="right badge badge-danger">New</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('project.index') }}" class="nav-link" {{ request()->is
+                            ('project.index') ? 'active' : ''}}>
                         <i class="nav-icon fas fa-chalkboard"></i>
                         <p>
                             Proyectos

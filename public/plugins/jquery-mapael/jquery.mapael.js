@@ -150,7 +150,7 @@
                 throw new Error("The map class `" + self.options.map.cssClass + "` doesn't exists");
             }
 
-            // Create the tooltip container
+            // CreateProject the tooltip container
             self.$tooltip = $("<div>").addClass(self.options.map.tooltip.cssClass).css("display", "none");
 
             // Get the map container, empty it then append tooltip
@@ -170,7 +170,7 @@
                 throw new Error("Unknown map '" + self.options.map.name + "'");
             }
 
-            // Create Raphael paper
+            // CreateProject Raphael paper
             self.paper = new Raphael(self.$map[0], self.mapConf.width, self.mapConf.height);
 
             // issue #135: Check for Raphael bug on text element boundaries
@@ -243,10 +243,10 @@
                 self.$container.trigger("zoom", self.options.map.zoom.init);
             }
 
-            // Create the legends for areas
+            // CreateProject the legends for areas
             self.createLegends("area", self.areas, 1);
 
-            // Create the legends for plots taking into account the scale of the map
+            // CreateProject the legends for plots taking into account the scale of the map
             self.createLegends("plot", self.plots, self.paper.width / self.mapConf.width);
 
             // Attach update event
@@ -340,7 +340,7 @@
                     // Set new size
                     self.paper.setSize(containerWidth, self.mapConf.height * newScale);
 
-                    // Create plots legend again to take into account the new scale
+                    // CreateProject plots legend again to take into account the new scale
                     // Do not do this on init (it will be done later)
                     if (isInit !== true && self.options.legend.redrawOnResize) {
                         self.createLegends("plot", self.plots, newScale);
@@ -610,7 +610,7 @@
             // init zoom buttons
             $.each(zoomOptions.buttons, function(type, opt) {
                 if (fnZoomButtons[type] === undefined) throw new Error("Unknown zoom button '" + type + "'");
-                // Create div with classes, contents and title (for tooltip)
+                // CreateProject div with classes, contents and title (for tooltip)
                 var $button = $("<div>").addClass(opt.cssClass)
                     .html(opt.content)
                     .attr("title", opt.title);
@@ -2000,7 +2000,7 @@
         },
 
         /*
-         * Create all legends for a specified type (area or plot)
+         * CreateProject all legends for a specified type (area or plot)
          * @param legendType the type of the legend : "area" or "plot"
          * @param elems collection of plots or areas displayed on the map
          * @param scale scale ratio of the map
@@ -2770,7 +2770,7 @@
             if ($.data(this, pluginName)) {
                 $.data(this, pluginName).destroy();
             }
-            // Create Mapael and save it as jQuery data
+            // CreateProject Mapael and save it as jQuery data
             // This allow external access to Mapael using $(".mapcontainer").data("mapael")
             $.data(this, pluginName, new Mapael(this, options));
         });

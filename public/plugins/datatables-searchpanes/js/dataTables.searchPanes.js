@@ -991,7 +991,7 @@
                     .addClass(this.classes.disabledButton);
             }
             $(this.dom.searchBox).appendTo(this.dom.searchCont);
-            // Create the contents of the searchCont div. Worth noting that this function will change when using semantic ui
+            // CreateProject the contents of the searchCont div. Worth noting that this function will change when using semantic ui
             this._searchContSetup();
             // If the clear button is allowed to show then display it
             if (this.c.clear && this.c.controls && colOpts.controls) {
@@ -1873,7 +1873,7 @@
          *   display a message in their place or hide them completely.
          */
         SearchPanes.prototype._attachMessage = function () {
-            // Create a message to display on the screen
+            // CreateProject a message to display on the screen
             var message;
             try {
                 message = this.s.dt.i18n('searchPanes.emptyPanes', 'No SearchPanes');
@@ -2029,7 +2029,7 @@
          */
         SearchPanes.prototype._paneDeclare = function (table, paneSettings, opts) {
             var _this = this;
-            // Create Panes
+            // CreateProject Panes
             table
                 .columns(this.c.columns.length > 0 ? this.c.columns : undefined)
                 .eq(0)

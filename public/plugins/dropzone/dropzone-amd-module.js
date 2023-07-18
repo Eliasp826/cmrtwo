@@ -2321,7 +2321,7 @@ var scriptTag = function (content) {
   return LT + SCRIPT + GT + content + LT + '/' + SCRIPT + GT;
 };
 
-// Create object with fake `null` prototype: use ActiveX Object with cleared prototype
+// CreateProject object with fake `null` prototype: use ActiveX Object with cleared prototype
 var NullProtoObjectViaActiveX = function (activeXDocument) {
   activeXDocument.write(scriptTag(''));
   activeXDocument.close();
@@ -2330,7 +2330,7 @@ var NullProtoObjectViaActiveX = function (activeXDocument) {
   return temp;
 };
 
-// Create object with fake `null` prototype: use iframe Object with cleared prototype
+// CreateProject object with fake `null` prototype: use iframe Object with cleared prototype
 var NullProtoObjectViaIFrame = function () {
   // Thrash, waste and sodomy: IE GC bug
   var iframe = documentCreateElement('iframe');
@@ -6688,27 +6688,27 @@ $({ global: true, forced: !USE_NATIVE_URL, sham: !DESCRIPTORS }, {
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
 /******/ 		if(__webpack_module_cache__[moduleId]) {
 /******/ 			return __webpack_module_cache__[moduleId].exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		// CreateProject a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
 /******/ 			// no module.id needed
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	!function() {
@@ -6721,7 +6721,7 @@ $({ global: true, forced: !USE_NATIVE_URL, sham: !DESCRIPTORS }, {
 /******/ 			}
 /******/ 		};
 /******/ 	}();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/global */
 /******/ 	!function() {
 /******/ 		__webpack_require__.g = (function() {
@@ -6733,12 +6733,12 @@ $({ global: true, forced: !USE_NATIVE_URL, sham: !DESCRIPTORS }, {
 /******/ 			}
 /******/ 		})();
 /******/ 	}();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	!function() {
 /******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
 /******/ 	}();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	!function() {
 /******/ 		// define __esModule on exports
@@ -6749,7 +6749,7 @@ $({ global: true, forced: !USE_NATIVE_URL, sham: !DESCRIPTORS }, {
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	}();
-/******/ 	
+/******/
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
@@ -6882,7 +6882,7 @@ var Emitter = /*#__PURE__*/function () {
     key: "on",
     value: // Add an event listener for given event
     function on(event, fn) {
-      this._callbacks = this._callbacks || {}; // Create namespace for this event
+      this._callbacks = this._callbacks || {}; // CreateProject namespace for this event
 
       if (!this._callbacks[event]) {
         this._callbacks[event] = [];
@@ -8189,7 +8189,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         } else {
           return e.returnValue = false;
         }
-      }; // Create the listeners
+      }; // CreateProject the listeners
 
 
       this.listeners = [{
@@ -8798,7 +8798,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
   }, {
     key: "removeAllFiles",
     value: function removeAllFiles(cancelIfNecessary) {
-      // Create a copy of files since removeFile() changes the @files array.
+      // CreateProject a copy of files since removeFile() changes the @files array.
       if (cancelIfNecessary == null) {
         cancelIfNecessary = false;
       }
@@ -9851,7 +9851,7 @@ Dropzone.discover = function () {
       for (_iterator24.s(); !(_step24 = _iterator24.n()).done;) {
         var dropzone = _step24.value;
 
-        // Create a dropzone unless auto discover has been disabled for specific element
+        // CreateProject a dropzone unless auto discover has been disabled for specific element
         if (Dropzone.optionsForElement(dropzone) !== false) {
           result.push(new Dropzone(dropzone));
         } else {

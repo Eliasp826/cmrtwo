@@ -15,7 +15,17 @@ return new class extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
+
+            $table->string('contact_name');
+            $table->string('contact_email')->unique();
+            $table->string('contact_phone_number');
+
+            $table->string('company_name');
+            $table->string('company_address')->unique();
+            $table->string('company_phone_number');
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

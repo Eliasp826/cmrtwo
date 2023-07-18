@@ -160,7 +160,7 @@
 		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 		 * Public
 		 */
-		
+
 		/**
 		 * Destroy the control
 		 */
@@ -292,7 +292,7 @@
 		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 		 * Constructor
 		 */
-		
+
 		/**
 		 * Build the control and assign initial event handlers
 		 *
@@ -603,7 +603,7 @@
 		 * @private
 		 */
 		_daysInMonth: function ( year, month ) {
-			// 
+			//
 			var isLeap = ((year % 4) === 0 && ((year % 100) !== 0 || (year % 400) === 0));
 			var months = [31, (isLeap ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
@@ -611,7 +611,7 @@
 		},
 
 		/**
-		 * Create a new date object which has the UTC values set to the local time.
+		 * CreateProject a new date object which has the UTC values set to the local time.
 		 * This allows the local time to be used directly for the library which
 		 * always bases its calculations and display on UTC.
 		 *
@@ -626,7 +626,7 @@
 		},
 
 		/**
-		 * Create a UTC ISO8601 date part from a date object
+		 * CreateProject a UTC ISO8601 date part from a date object
 		 *
 		 * @param  {Date} d Date to "convert"
 		 * @return {string} ISO formatted date
@@ -711,8 +711,8 @@
 
 
 		/**
-		 * Create the HTML for a month to be displayed in the calendar table.
-		 * 
+		 * CreateProject the HTML for a month to be displayed in the calendar table.
+		 *
 		 * Based upon the logic used in Pikaday - MIT licensed
 		 * Copyright (c) 2014 David Bushell
 		 * https://github.com/dbushell/Pikaday
@@ -832,7 +832,7 @@
 		},
 
 		/**
-		 * Create the calendar table's header (week days)
+		 * CreateProject the calendar table's header (week days)
 		 *
 		 * @return {string} HTML cells for the row
 		 * @private
@@ -852,7 +852,7 @@
 
 				return i18n.weekdays[day];
 			};
-			
+
 			// Empty cell in the header
 			if ( this.c.showWeekNumber ) {
 				a.push( '<th></th>' );
@@ -866,7 +866,7 @@
 		},
 
 		/**
-		 * Create a cell that contains week of the year - ISO8601
+		 * CreateProject a cell that contains week of the year - ISO8601
 		 *
 		 * Based on https://stackoverflow.com/questions/6117814/ and
 		 * http://techblog.procurios.nl/k/n618/news/view/33796/14863/
@@ -874,7 +874,7 @@
 		 * @param  {integer} d Day of month
 		 * @param  {integer} m Month of year (zero index)
 		 * @param  {integer} y Year
-		 * @return {string}   
+		 * @return {string}
 		 * @private
 		 */
 		_htmlWeekOfYear: function ( d, m, y ) {
@@ -890,7 +890,7 @@
 		},
 
 		/**
-		 * Create option elements from a range in an array
+		 * CreateProject option elements from a range in an array
 		 *
 		 * @param  {string} selector Class name unique to the select element to use
 		 * @param  {array} values   Array of values
@@ -933,7 +933,7 @@
 		},
 
 		/**
-		 * Create time options list.
+		 * CreateProject time options list.
 		 *
 		 * @param  {string} unit Time unit - hours, minutes or seconds
 		 * @param  {integer} count Count range - 12, 24 or 60
@@ -977,7 +977,7 @@
 				var selected = val === value || (value === 'am' && val < 12) || (value === 'pm' && val >= 12) ?
 					'selected' :
 					'';
-				
+
 				if (allowed && $.inArray(value, allowed) === -1) {
 					selected += ' disabled';
 				}
@@ -996,7 +996,7 @@
 			if ( count === 12 ) {
 				// Hours with AM/PM
 				a += '<tr>';
-				
+
 				for ( i=1 ; i<=6 ; i++ ) {
 					a += button(i, render(i));
 				}
@@ -1034,7 +1034,7 @@
 					a += button(j, render(j), 'range');
 				}
 				a += '</tr>';
-				
+
 				// Slight hack to allow for the different number of columns
 				a += '</tbody></thead><table class="'+className+' '+className+'-nospace"><tbody>';
 
@@ -1066,7 +1066,7 @@
 		},
 
 		/**
-		 * Create the options for the month and year
+		 * CreateProject the options for the month and year
 		 *
 		 * @param  {integer} year  Year
 		 * @param  {integer} month Month (starting at 0)
@@ -1160,7 +1160,7 @@
 		},
 
 		/**
-		 * Create a simple array with a range of values
+		 * CreateProject a simple array with a range of values
 		 *
 		 * @param  {integer} start   Start value (inclusive)
 		 * @param  {integer} end     End value (inclusive)
@@ -1232,7 +1232,7 @@
 		/**
 		 * Show the widget and add events to the document required only while it
 		 * is displayed
-		 * 
+		 *
 		 * @private
 		 */
 		_show: function () {
@@ -1308,7 +1308,7 @@
 				this.dom.input
 					.val( out )
 					.trigger('change', {write: date});
-			
+
 			if ( this.dom.input.attr('type') === 'hidden' ) {
 				this.val(out, false);
 			}

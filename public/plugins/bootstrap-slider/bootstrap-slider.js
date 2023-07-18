@@ -1,5 +1,5 @@
 /*! =======================================================
-                      VERSION  11.0.2              
+                      VERSION  11.0.2
 ========================================================= */
 "use strict";
 
@@ -432,7 +432,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 			}
 
 			/*************************************************
-   					Create Markup
+   					CreateProject Markup
    	**************************************************/
 
 			var origWidth = this.element.style.width;
@@ -446,11 +446,11 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 			if (this.sliderElem) {
 				updateSlider = true;
 			} else {
-				/* Create elements needed for slider */
+				/* CreateProject elements needed for slider */
 				this.sliderElem = document.createElement("div");
 				this.sliderElem.className = "slider";
 
-				/* Create slider track elements */
+				/* CreateProject slider track elements */
 				var sliderTrack = document.createElement("div");
 				sliderTrack.className = "slider-track";
 
@@ -479,7 +479,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				sliderTrack.appendChild(sliderTrackSelection);
 				sliderTrack.appendChild(sliderTrackHigh);
 
-				/* Create highlight range elements */
+				/* CreateProject highlight range elements */
 				this.rangeHighlightElements = [];
 				var rangeHighlightsOpts = this.options.rangeHighlights;
 				if (Array.isArray(rangeHighlightsOpts) && rangeHighlightsOpts.length > 0) {
@@ -505,7 +505,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 					sliderMaxHandle.setAttribute('aria-labelledby', this.options.labelledby);
 				}
 
-				/* Create ticks */
+				/* CreateProject ticks */
 				this.ticks = [];
 				if (Array.isArray(this.options.ticks) && this.options.ticks.length > 0) {
 					this.ticksContainer = document.createElement('div');
@@ -559,7 +559,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 					tooltipElem.appendChild(inner);
 				};
 
-				/* Create tooltip elements */
+				/* CreateProject tooltip elements */
 				var sliderTooltip = document.createElement("div");
 				sliderTooltip.className = "tooltip tooltip-main";
 				sliderTooltip.setAttribute('role', 'presentation');

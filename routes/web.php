@@ -4,6 +4,11 @@ use App\Http\Livewire\Admin\Dashboard;
 //use App\Http\Controllers\Admin\Dashboard1Controller;
 use App\Http\Livewire\Admin\UserList;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Client\ClientManager;
+use App\Http\Livewire\Project\ProjectManager;
+use App\Http\Livewire\Project\CreateProject;
+use App\Http\Livewire\Project\EditProject;
+use App\Http\Livewire\Task\TaskManager;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +25,23 @@ use Illuminate\Support\Facades\Route;
   // return view('livewire.admin.dashboard');
 //});
 
-Route::get('/admin', Dashboard::class)
+Route::get('/dashboard', Dashboard::class)
          ->name('admin.dashboard');
 
 Route::get('/usuarios', UserList::class)
         ->name('admin.usuarios');
+
+Route::get('/clientes', ClientManager::class)
+    ->name('client.manager');
+
+Route::get('/proyectos', ProjectManager::class)
+    ->name('project.index');
+
+//Route::get('/crear', CreateProject::class)
+  //  ->name('project.create');
+
+//Route::get('/editproject', EditProject::class)
+  //  ->name('project.edit');
+
+Route::get('/tarea', taskmanager::class)
+    ->name('tarea.pendiente');

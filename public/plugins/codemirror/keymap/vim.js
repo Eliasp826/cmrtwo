@@ -799,7 +799,7 @@
             ctxsToMap = ctxsToMap.filter(function(el) { return mappedCtxs.indexOf(el) === -1; });
           }
         }
-        // TODO: Create non-recursive keyToKey mappings for the unmapped contexts once those exist.
+        // TODO: CreateProject non-recursive keyToKey mappings for the unmapped contexts once those exist.
       },
       // Remove all user-defined mappings for the provided context.
       mapclear: function(ctx) {

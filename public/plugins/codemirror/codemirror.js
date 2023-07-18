@@ -2000,7 +2000,7 @@
     this.hidden = lineIsHidden(doc, line);
   }
 
-  // Create a range of LineView objects for the given lines.
+  // CreateProject a range of LineView objects for the given lines.
   function buildViewArray(cm, from, to) {
     var array = [], nextPos;
     for (var pos = from; pos < to; pos = nextPos) {
@@ -4813,7 +4813,7 @@
     this.generation = this.maxGeneration = prev ? prev.maxGeneration : 1;
   }
 
-  // Create a history change event from an updateDoc-style change
+  // CreateProject a history change event from an updateDoc-style change
   // object.
   function historyChangeFromChange(doc, change) {
     var histChange = {from: copyPos(change.from), to: changeEnd(change), text: getBetween(doc, change.from, change.to)};
@@ -5920,7 +5920,7 @@
   };
   eventMixin(TextMarker);
 
-  // Create a marker, wire it up to the right lines, and
+  // CreateProject a marker, wire it up to the right lines, and
   function markText(doc, from, to, options, type) {
     // Shared markers (across linked documents) are handled separately
     // (markTextShared will call out to this again, once per

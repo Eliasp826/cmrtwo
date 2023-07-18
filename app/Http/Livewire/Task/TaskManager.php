@@ -1,28 +1,29 @@
 <?php
 
-namespace App\Http\Livewire\Client;
+namespace App\Http\Livewire\Task;
 
 use App\Models\Client;
-use App\Models\User;
+use App\Models\Project;
+use app\Models\User;
+use App\Models\Tasks;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-
-class ClientManager extends Component
+class TaskManager extends Component
 {
     use withPagination;
     //public $photo;
     protected $paginationTheme = 'bootstrap';
     public $searchTerm;
 
-    public $client;
+    public $task;
 
     public $showEditModal = false;
 
     public $state = [];
 
-    public $clientIdBeingRemoved = null;
+    public $taskIdBeingRemoved = null;
 
     public function addNew()
     {
@@ -33,19 +34,20 @@ class ClientManager extends Component
 
         $this->dispatchBrowserEvent('show-form');
     }
-    public function createClient()
+    public function createTask()
     {
         $validatedData = validator::make($this->state,[
-            'contact_name' => 'required',
-            'contact_email' => 'required|email|unique:clients,contact_email',
-            'contact_phone_number' => 'required',
-            'company_name' => 'required',
-            'company_address' => 'required',
-            'company_phone_number' => 'required',
+            'name' => 'required|min:5',
+            'description' => 'required',
+            'deadline' => 'required',
+            'status' => 'required',
+            'client_id' => 'required',
+            'user_id' => 'required',
+
         ])->validate();
 
 
-        Client::create($validatedData);
+        Tasks::create($validatedData);
 
         // session()->flash('message', 'User added successfully!');
 
@@ -53,11 +55,11 @@ class ClientManager extends Component
 
     }
 
-    public function updateClient()
+    public function updateTask()
     {
         $validatedData = validator::make($this->state,[
             'contact_name' => 'required',
-            'contact_email' => 'required|email|unique:clients,contact_email,' .$this->client->id,
+            'contact_email' => 'required|email|unique:clients,contact_email,' .$this->task->id,
             'contact_phone_number' => 'required',
             'company_name' => 'required',
             'company_address' => 'required',
@@ -65,37 +67,37 @@ class ClientManager extends Component
         ])->validate();
 
 
-        $this->client->update($validatedData);
+        $this->task->update($validatedData);
 
         // session()->flash('message', 'User added successfully!');
 
         $this->dispatchBrowserEvent('hide-form', ['message' => 'Client updated successfully!']);
     }
 
-    public function confirmUserRemoval($clientId)
+    public function confirmTaskRemoval($taskId)
     {
-        $this->clientIdBeingRemoved = $clientId;
+        $this->taskIdBeingRemoved = $taskId;
         $this->dispatchBrowserEvent('show-delete-modal');
     }
 
-    public function deleteClient()
+    public function deleteTask()
     {
-        $client = Client::findOrFail($this->clientIdBeingRemoved);
-        $client->delete();
+        $task = Tasks::findOrFail($this->taskIdBeingRemoved);
+        $task->delete();
         $this->dispatchBrowserEvent('hide-delete-modal', ['massage' => 'Client deleted successfully!']);
     }
-    public function edit(client $client)
+    public function edit(tasks $task)
     {
         $this->showEditModal = true;
-        $this->client = $client;
-        $this->state = $client->toArray();
+        $this->task = $task;
+        $this->state = $task->toArray();
         $this->dispatchBrowserEvent('show-form');
     }
     public function render()
     {
-        $clients = Client::latest()->paginate(5);
-        return view('livewire.client.client-manager',
-        ['clients' => $clients,
-            ]);
+        $tasks = Tasks::latest()->paginate(5);
+        return view('livewire.task.task-manager', [
+            'tasks' => $tasks,
+        ]);
     }
 }

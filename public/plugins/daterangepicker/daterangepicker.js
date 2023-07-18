@@ -1119,7 +1119,7 @@
         show: function(e) {
             if (this.isShowing) return;
 
-            // Create a click proxy that is private to this instance of datepicker, for unbinding
+            // CreateProject a click proxy that is private to this instance of datepicker, for unbinding
             this._outsideClickProxy = $.proxy(function(e) { this.outsideClick(e); }, this);
 
             // Bind global datepicker mousedown for hiding and

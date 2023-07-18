@@ -102,7 +102,7 @@ $(function () {
       display: false
     }
   }
-  // Create pie or douhnut chart
+  // CreateProject pie or douhnut chart
   // You can switch between pie and douhnut using the method below.
   // eslint-disable-next-line no-unused-vars
   var pieChart = new Chart(pieChartCanvas, {
@@ -117,7 +117,7 @@ $(function () {
 
   /* jVector Maps
    * ------------
-   * Create a world map with markers
+   * CreateProject a world map with markers
    */
   $('#world-map-markers').mapael({
     map: {
