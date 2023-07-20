@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Project;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Project;
 use App\Models\User;
 use App\Models\Client;
@@ -13,21 +14,28 @@ class ProjectManager extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
+    public $state = [];
+
     public  $selected_id, $keyWord, $name, $description, $deadline, $status, $user_id, $client_id;
 
+    public function mount()
+    {
+
+    }
+    public function addNew()
+    {
+        $this->state =[];
+        $this->dispatchBrowserEvent('createDataModal');
+    }
     public function render()
     {
+        $clients = Client::all();
+        $users = User::all();
+
         $keyWord = '%'. $this->keyWord .'%';
-        return view('livewire.project.project-manager', [
-            'projects' => Project::latest()
-            ->orWhere('name', 'LIKE', $keyWord)
-            ->orWhere('description', 'LIKE', $keyWord)
-            ->orWhere('deadline', 'LIKE', $keyWord)
-            ->orWhere('status', 'LIKE', $keyWord)
-            ->orWhere('user_id', 'LIKE', $keyWord)
-            ->orWhere('client_id', 'LIKE', $keyWord)
-            ->paginate(5),
-        ]);
+        $projects = Project::latest()->paginate(5);
+        return view('livewire.project.project-manager', ['projects' => $projects,
+        compact('clients', 'users')]);
     }
 
     public function cancel()
@@ -47,25 +55,41 @@ class ProjectManager extends Component
 
     public function store()
     {
-        $this->validate([
+
+        $validatedData = validator::make($this->state, [
             'name' => 'required',
             'description' => 'require',
             'deadline' => 'required',
             'status' => 'required',
-        ]);
+            'client_id' => 'required|exists:client,id',
+            'user_id' => 'required|exists:users_id'
+        ])->validate();
 
-        Project::create([
+        $project = new Project();
+        $project->name = $validatedData['name'];
+
+        $client = Client::find($validatedData['client_id']);
+        $user = User::find($validatedData['user_id']);
+
+        $project->client()->associate($client);
+        $project->user()->associate($user);
+
+        Project::create($validatedData);
+
+      /*  Project::create([
            'name' => $this-> name,
            'description' => $this-> description,
            'deadline' => $this-> deadline,
             'status' => $this-> status,
             'user_id' => $this-> user_id,
             'client_id' => $this-> client_id
-        ]);
+        ]);*/
+
+
 
         $this->resetInput();
         $this->dispatchBrowserEvent('closeModal');
-        session()->flash('message', 'Project Successfully created');
+        $this->dispatchBrowserEvent('hide-form', ['message' => 'Proyecto agregado successfully!']);
     }
 
     public function edit($id)

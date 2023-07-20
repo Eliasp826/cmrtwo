@@ -24,11 +24,12 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <div class="d-flex justify-content-end m-2" data-bs-toggle="modal" data-bs-target="createDataModal">
-                                <button class="btn btn-sm btn-primary">
-                                    <i class="fa fa-plus-square m-2">
+                            <div class="d-flex justify-content-end m-2">
+                                <button wire:click.prevent="addNew" class="btn btn-primary" data-toggle="modal" data-target="#createDataModal">
+                                    <i class="fa fa-plus-square m-1">
                                     </i>Nuevo Proyectos</button>
                             </div>
+
 
                             <h4 class="card-title">
                                 <b>componentName | PageTitle</b>
@@ -65,11 +66,11 @@
                                                 <td>{{$project->user->name}}</td>
                                                 <td width="90">
                                                     <div class="dropdown">
-                                                        <a class="btn btn-sm btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <a class="btn btn-sm btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
                                                             Actions
                                                         </a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a data-bs-toggle="modal" data-bs-target="#updateDataModal" class="dropdown-item" wire:click="edit({{$project->id}})"><i class="fa fa-edit"></i> Edit </a></li>
+                                                        <li><a data-toggle="modal" data-target="#updateDataModal" class="dropdown-item" wire:click="edit({{$project->id}})"><i class="fa fa-edit"></i> Edit </a></li>
                                                         <li><a class="dropdown-item" onclick="confirm('Confirm Delete Project id {{$project->id}}? \nDeleted Projects cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$project->id}})"><i class="fa fa-trash"></i> Delete </a></li>
                                                     </ul>
                                                     </div>
