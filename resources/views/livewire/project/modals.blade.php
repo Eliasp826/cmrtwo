@@ -22,7 +22,7 @@
 
                         <div class="form-group">
                             <label for="description" class="required"></label>
-                            <textarea name="description" placeholder="Descripcion" class="form-control">{{old('description', '')}}</textarea>
+                            <textarea wire:model.defer="state.description"name="description" placeholder="Descripcion" class="form-control">{{old('description', '')}}</textarea>
                             @if ($errors->has('description'))
                                 <span class="error text-danger">
                                     <strong>{{ $errors->first('description') }}</strong>
@@ -48,8 +48,8 @@
                                 @foreach ($users as $user)
                                     <option value="{{ $user->id }}" {{old('user_id') == $user->id ? 'selected' : ''}}>
                                         {{ $user->name }}
+                                        @endforeach
                                     </option>
-                                @endforeach
                             </select>
                             @if ($errors->has('user_id'))
                                 <span class="text-danger">
@@ -58,22 +58,40 @@
                             @endif
                         </div>
 
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <label for="user_id"></label>
                             <input wire:model="user_id" type="text" class="form-control" id="user_id"
                                    placeholder="User Id">@error('user_id') <span class="error text-danger">{{ $message }}</span> @enderror
-                        </div>
+                        </div>-->
+
                         <div class="form-group">
+                            <label for="client_id" class="required">Cliente</label>
+                            <select wire:model.defer="state.client_id"class="form-control select2" name="client_id" style="width: 100%;">
+                                <option value="">Seleccione un cliente</option>
+                                @foreach ($clients as $client)
+                                    <option value="{{ $client->id }}" {{old('client_id') == $client->id ? 'selected' : ''}}>
+                                        {{ $client->contact_name }}
+                                        @endforeach
+                                    </option>
+                            </select>
+                            @if ($errors->has('client_id'))
+                                <span class="text-danger">
+                                    <strong>{{ $errors->first('client_id') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+
+                        <!--<div class="form-group">
                             <label for="client_id"></label>
                             <select class="form-control select2"></select>
                             <input wire:model="client_id" type="text" class="form-control" id="client_id"
                                    placeholder="Client Id">@error('client_id') <span class="error text-danger">{{ $message }}</span> @enderror
-                        </div>
+                        </div>-->
 
 
                         <div class="form-group">
                             <label for="status">Status del proyecto</label>
-                            <select wire:model="status" class="form-control select2 {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status" id="status" required>
+                            <select wire:model.defer="state.status" class="form-control select2 {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status" id="status" required>
                                 <option value="">Seleccione un status</option>
                                 @foreach(App\Models\Project::STATUS as $status)
                                     <option value="{{ $status }}" {{ old('status') == $status ? 'selected' : '' }}>{{ $status }}</option>

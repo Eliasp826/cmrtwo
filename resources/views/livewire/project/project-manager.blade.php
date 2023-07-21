@@ -62,7 +62,7 @@
                                                 <td>{{$project->description}}</td>
                                                 <td>{{$project->deadline}}</td>
                                                 <td>{{$project->status}}</td>
-                                                <td>{{$project->client->contact_name}}</td>
+                                                <td>{{$project->client_id}}</td>
                                                 <td>{{$project->user->name}}</td>
                                                 <td width="90">
                                                     <div class="dropdown">

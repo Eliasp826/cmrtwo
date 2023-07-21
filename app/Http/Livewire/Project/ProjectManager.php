@@ -15,12 +15,16 @@ class ProjectManager extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $state = [];
+    public $clients;
+    public $users;
+
 
     public  $selected_id, $keyWord, $name, $description, $deadline, $status, $user_id, $client_id;
 
     public function mount()
     {
-
+        $this->clients = Client::all();
+        $this->users = User::all();
     }
     public function addNew()
     {
@@ -29,13 +33,12 @@ class ProjectManager extends Component
     }
     public function render()
     {
-        $clients = Client::all();
-        $users = User::all();
 
         $keyWord = '%'. $this->keyWord .'%';
         $projects = Project::latest()->paginate(5);
-        return view('livewire.project.project-manager', ['projects' => $projects,
-        compact('clients', 'users')]);
+        return view('livewire.project.project-manager',
+            ['projects' => $projects,
+                ]);
     }
 
     public function cancel()
@@ -55,26 +58,23 @@ class ProjectManager extends Component
 
     public function store()
     {
-
         $validatedData = validator::make($this->state, [
             'name' => 'required',
             'description' => 'require',
             'deadline' => 'required',
             'status' => 'required',
-            'client_id' => 'required|exists:client,id',
-            'user_id' => 'required|exists:users_id'
+            'user_id' => 'required|exists:users,id',
+            'client_id' => 'required|exists:clients,id',
         ])->validate();
 
-        $project = new Project();
-        $project->name = $validatedData['name'];
-
-        $client = Client::find($validatedData['client_id']);
-        $user = User::find($validatedData['user_id']);
-
-        $project->client()->associate($client);
-        $project->user()->associate($user);
-
-        Project::create($validatedData);
+        Project::create($validatedData, [
+                'name' => $this-> name,
+                'description' => $this-> description,
+                'deadline' => $this-> deadline,
+                'status' => $this-> status,
+                'user_id' => $this-> user_id,
+                'client_id' => $this-> client_id
+        ]);
 
       /*  Project::create([
            'name' => $this-> name,

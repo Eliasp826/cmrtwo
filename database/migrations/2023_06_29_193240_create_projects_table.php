@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->varchar(255)->default(null);
             $table->date('deadline');
             $table->string('status')->default('Abierto');
             $table->foreignId('user_id')->nullable()->constrained();
