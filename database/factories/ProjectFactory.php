@@ -20,7 +20,7 @@ class ProjectFactory extends Factory
             'deadline' => $this->faker->name,
             'status' => $this->faker->name,
             'user_id' => $this->faker->name,
-            'client' => $this->faker->name,
+            'client_id' => $this->faker->name,
         ];
     }
 }

@@ -62,8 +62,8 @@
                                                 <td>{{$project->description}}</td>
                                                 <td>{{$project->deadline}}</td>
                                                 <td>{{$project->status}}</td>
-                                                <td>{{$project->client_id}}</td>
                                                 <td>{{$project->user->name}}</td>
+                                                <td>{{$project->client_id}}</td>
                                                 <td width="90">
                                                     <div class="dropdown">
                                                         <a class="btn btn-sm btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
@@ -71,7 +71,7 @@
                                                         </a>
                                                     <ul class="dropdown-menu">
                                                         <li><a data-toggle="modal" data-target="#updateDataModal" class="dropdown-item" wire:click="edit({{$project->id}})"><i class="fa fa-edit"></i> Edit </a></li>
-                                                        <li><a class="dropdown-item" onclick="confirm('Confirm Delete Project id {{$project->id}}? \nDeleted Projects cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$project->id}})"><i class="fa fa-trash"></i> Delete </a></li>
+                                                        <li><a  class="dropdown-item" onclick="confirm('Confirm Delete Project id {{$project->id}}? \nDeleted Projects cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$project->id}})"><i class="fa fa-trash"></i> Delete </a></li>
                                                     </ul>
                                                     </div>
                                                 </td>

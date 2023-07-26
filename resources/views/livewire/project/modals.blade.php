@@ -10,11 +10,11 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label for="name" class="required"></label>
-                            <input wire:model.defer="state.name" type="text" name="name" id="name" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}"
+                            <label for="name" class="required">Nombre del proyecto</label>
+                            <input wire:model="name" type="text" name="name" id="name" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}"
                                    placeholder="Ingrese el nombre del proyecto" value="{{old('name', '')}}">
                             @if ($errors->has('name'))
-                                <span class="error text-danger">{{ $message }}
+                                <span class="error text-danger">
                                     <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                             @endif
@@ -22,7 +22,7 @@
 
                         <div class="form-group">
                             <label for="description" class="required"></label>
-                            <textarea wire:model.defer="state.description"name="description" placeholder="Descripcion" class="form-control">{{old('description', '')}}</textarea>
+                            <textarea wire:model="description"name="description" placeholder="Descripcion" class="form-control">{{old('description', '')}}</textarea>
                             @if ($errors->has('description'))
                                 <span class="error text-danger">
                                     <strong>{{ $errors->first('description') }}</strong>
@@ -36,14 +36,14 @@
                                    placeholder="Descripcion">@error('description') <span class="error text-danger">{{ $message }}</span> @enderror
                         </div>-->
                         <div class="form-group">
-                            <label for="deadline"></label>
-                            <input wire:model.defer="state.deadline" type="text" class="form-control date" id="deadline"
-                                   placeholder="Fecha Limite">@error('deadline') <span class="error text-danger">{{ $message }}</span> @enderror
+                            <label for="deadline">Fecha Limite</label>
+                            <input wire:model="deadline" type="text" class="form-control date" id="deadline"
+                                   placeholder="Fecha Limite">@error('deadline') <span class="error text-danger"></span> @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="user_id" class="required">Usuario</label>
-                            <select wire:model.defer="state.user_id" id="user_id" class="form-control select2" name="user_id" style="width: 100%;">
+                            <select wire:model="user_id" name="user_id" class="form-control select2" id="user_id" style="width: 100%;">
                                 <option value="">Seleccione un usuario</option>
                                 @foreach ($users as $user)
                                     <option value="{{ $user->id }}" {{old('user_id') == $user->id ? 'selected' : ''}}>
@@ -66,10 +66,10 @@
 
                         <div class="form-group">
                             <label for="client_id" class="required">Cliente</label>
-                            <select wire:model.defer="state.client_id"class="form-control select2" name="client_id" style="width: 100%;">
+                            <select wire:model="client_id" name="client_id" class="form-control select2" id="client_id" style="width: 100%;">
                                 <option value="">Seleccione un cliente</option>
                                 @foreach ($clients as $client)
-                                    <option value="{{ $client->id }}" {{old('client_id') == $client->id ? 'selected' : ''}}>
+                                    <option value="{{ $client->id }}" {{old('client_id') == $client->id? 'selected' : ''}}>
                                         {{ $client->contact_name }}
                                         @endforeach
                                     </option>
@@ -91,7 +91,7 @@
 
                         <div class="form-group">
                             <label for="status">Status del proyecto</label>
-                            <select wire:model.defer="state.status" class="form-control select2 {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status" id="status" required>
+                            <select wire:model="status" class="form-control select2 {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status" id="status" required>
                                 <option value="">Seleccione un status</option>
                                 @foreach(App\Models\Project::STATUS as $status)
                                     <option value="{{ $status }}" {{ old('status') == $status ? 'selected' : '' }}>{{ $status }}</option>
