@@ -31,9 +31,11 @@ Route::get('/dashboard', Dashboard::class)
 Route::get('/usuarios', UserList::class)
         ->name('admin.usuarios');
 
+//Route de clientes//
 Route::get('/clientes', ClientManager::class)
     ->name('client.manager');
 
+//Route de proyectos/
 Route::get('/proyectos', ProjectManager::class)
     ->name('project.index');
 
@@ -43,5 +45,6 @@ Route::get('/proyectos', ProjectManager::class)
 //Route::get('/editproject', EditProject::class)
   //  ->name('project.edit');
 
+//Route de Tarea//
 Route::get('/tarea', taskmanager::class)
     ->name('tarea.pendiente');

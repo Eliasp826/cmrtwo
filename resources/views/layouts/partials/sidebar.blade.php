@@ -37,33 +37,27 @@
                      with font-awesome or any other icon font library -->
 
                 <li class="nav-item menu-open">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Panel de control
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="#" class="nav-link active">
-                                <i class="fas fa-poll"></i>
-                                <p>Analisis</p>
+                                <i class="fas fa-tachometer-alt"></i>
+                                <p>Panel de Control</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Inactive Page</p>
+                                <i class="fas fa-poll"></i>
+                                <p>Analsis</p>
                             </a>
                         </li>
                     </ul>
                 </li>
+                <li class="nav-header">Gestor de Usuario</li>
                 <li class="nav-item menu-open">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
-                            Gestor Usuario
+                            Gestion de Usuario
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -86,6 +80,8 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="nav-header">Gertion de Cliente</li>
                 <li class="nav-item">
                     <a href="{{ route('client.manager') }}" class="nav-link" {{ request()->is
                         ('client.manager') ? 'active' : ''}}>
@@ -96,6 +92,8 @@
                         </p>
                     </a>
                 </li>
+
+                <li class="nav-header">Gestion de Proyecto</li>
                 <li class="nav-item">
                     <a href="{{ route('project.index') }}" class="nav-link" {{ request()->is
                             ('project.index') ? 'active' : ''}}>
@@ -106,9 +104,11 @@
                         </p>
                     </a>
                 </li>
+
+                <li class="nav-header">Gestión de tarea</li>
                 <li class="nav-item">
                     <a href="{{route('tarea.pendiente')}}" class="nav-link" {{ request()->is
-                        ('client.manager') ? 'active' : ''}}>
+                        ('tarea.pendiente') ? 'active' : ''}}>
                         <i class="nav-icon fas fa-user-astronaut"></i>
                         <p>
                             Tarea
@@ -117,6 +117,17 @@
                     </a>
                 </li>
 
+                <li class="nav-header">Configuracion</li>
+                <li class="nav-item">
+                    <a href="{{ route('project.index') }}" class="nav-link" {{ request()->is
+                            ('project.index') ? 'active' : ''}}>
+                        <i class="nav-icon fas fa-chalkboard"></i>
+                        <p>
+                            Proyectos
+                            <span class="right badge badge-danger">New</span>
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

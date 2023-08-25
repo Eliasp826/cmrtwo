@@ -25,7 +25,8 @@
                         <div class="card-body">
 
                             <div class="d-flex justify-content-end m-2">
-                                <button wire:click.prevent="addNew" class="btn btn-primary" data-toggle="modal" data-target="#createDataModal">
+                                <button wire:click.prevent="addNew" class="btn btn-primary"
+                                        data-toggle="modal" data-target="#createDataModal">
                                     <i class="fa fa-plus-square m-1">
                                     </i>Nuevo Proyectos</button>
                             </div>
@@ -35,7 +36,13 @@
                                 <b>componentName | PageTitle</b>
                             </h4>
                             <div class="container-fluid">
-                                <input wire:model="keyWord" type="text" class="form-control" name="search" id="serach" placeholder="Search Projects">
+                                <h2 class="text-center display-4"></h2>
+                                <div class="row">
+                                    <div class="col-md-8 offset-md-2">
+                                        <input wire:model="keyWord" type="text" class="form-control"
+                                               name="search" id="serach" placeholder="Buscar">
+                                    </div>
+                                </div>
                             </div>
 
 
@@ -82,7 +89,7 @@
                                     <div class="d-flex justify-content-end">
                                         {{ $projects->links() }}
                                     </div>
-                            </div>
+                                </div>
                             </div>
                         </div>
                     </div>
