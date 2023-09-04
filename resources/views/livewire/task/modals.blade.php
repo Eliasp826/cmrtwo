@@ -1,152 +1,119 @@
-<!-- modal task formulario crear-->
-<div class="modal fade" id="form" tabindex="1" role="dialog"
-     aria-labelledby="exampleModalLabel" aria-hidden="true" wire:ignore.self>
-    <div class="modal-dialog modal-lg" role="document">
-        <form autocomplete="off" wire:submit.prevent="{{ $showEditModal ? 'updateTasks' :
-                'createTask' }}">
+<div>
+    <!-- modal task formulario crear-->
+    <div wire:ignore.self class="modal fade" id="createDataModal" tabindex="-1" role="dialog"
+         aria-labelledby="createDataModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel">
-                        @if($showEditModal)
-                            <span>Edit Tarea/span>
-                            @else
-                                    <span>Agregar nueva Tarea</span>
-                        @endif
-                    </h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h5 class="modal-title" id="createDataModalLabel">Agregar Nueva Tarea</h5>
+                    <button wire:click.prevent="cancel()" type="button" class="btn-close"
+                    data-dismiss="modal" aria-label="close">x</button>
                 </div>
                 <div class="modal-body">
-                    <div class="card-body">
+                    <form>
                         <div class="form-group">
-                            <label for="name">Tarea</label>
-                            <input type="text" wire:model.defer="state.name" class="form-control
-                                @error('name') is-invalid @enderror" id="name" aria-describedby="nameHelp"
-                                   placeholder="Enter full name">
-                            @error('name')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                            <label for="name" class="required">Tarea</label>
+                            <input wire:model="name" type="text" name="name" id="name" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}"
+                            placeholder="Ingrese la tarea agsinadad" value="{{old('name', '')}}">
+                            @if($errors->has('name'))
+                                <span class="error text-danger">
+                                    <strong>{{$errors->first('name')}}</strong>
+                                </span>
+                            @endif
                         </div>
 
                         <div class="form-group">
-                            <label for="description">Descripcion</label>
-                            <input type="text" wire:model.defer="state.description" class="form-control @error('description"')
-                                is-invalid @enderror" id="description" aria-describedby="emailHelp"
-                                   placeholder="ingresar contact_email">
-                            @error('description"')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                            <label for="description" class="required"></label>
+                            <textarea wire:model="description" name="description" placeholder="Descripcion"
+                                      class="form-control">{{old('description', '')}}</textarea>
+                            @if($errors->has('description'))
+                                <span class="error text-danger">
+                                    <strong>{{$errors->first('description')}}</strong>
+                                </span>
+                            @endif
                         </div>
 
                         <div class="form-group">
-                            <label for="deadline">Fecha Límite</label>
-                            <input type="text" wire:model.defer="state.deadline" class="form-control @error('deadline')
-                                is-invalid @enderror" id="deadline" aria-describedby="phoneHelp"
-                                   placeholder="ingresar phone">
-                            @error('deadline')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                            <label for="deadline" class="required">Fecha Limite</label>
+                            <input wire:model="deadline" name="deadline" type="text" class="form-control date"
+                            value="{{old('deadline')}}">
                         </div>
 
                         <div class="form-group">
-                            <label for="user_id">Usuario</label>
-                            <select type="text" wire:model.defer="state.user_id" class="form-control select2" name="user_id" style="width: 100%;">
+                            <label for="user_id" class="required">Usuario</label>
+                            <select wire:model="user_id" class="form-control select2" name="user_id" style="width: 100%;">
                                 <option value="">Seleccione un usuario</option>
-                                @error('user_id')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->id }} {{old('user_id') == $user->id ? 'selected' : ''}}">
+                                        {{$user->name}}
+                                    </option>
+                                @endforeach
                             </select>
+                            @if ($errors->has('user_id'))
+                                <span class="text-danger">
+                                    <strong>{{$errors->first('user_id')}}</strong>
+                                </span>
+                            @endif
                         </div>
 
                         <div class="form-group">
-                            <label for="client_id">Cliente</label>
-                            <select type="text" wire:model.defer="state.client_id" class="form-control select2" name="client_id" style="width: 100%;">
-                                <option value="">Seleccione un usuario</option>
-                                @error('client_id')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
+                            <label for="client_id" class="required">Cliente</label>
+                            <select wire:model="client_id"  class="form-control select2" id="client_id" style="width: 100%;">
+                                <option value="">Seleccione un cliente</option>
+                                @foreach($clients as $client)
+                                    <option value="{{$client->id}}" {{old('client_id') == $client->id ? 'selected' : ''}}>
+                                    {{ $client->contact_name }}
+                                        @endforeach
+                                    </option>
                             </select>
+                            @if($errors->has('client_id'))
+                                <span class="text-danger">
+                                    <strong>{{$errors->first('client_id')}}</strong>
+                                </span>
+                            @endif
                         </div>
 
                         <div class="form-group">
-                            <label for="project_id">Proyectos</label>
-                            <select type="text" wire:model.defer="state.project_id" class="form-control select2" name="project_id" style="width: 100%;">
-                                <option value="">Seleccione un usuario</option>
-                                @error('project_id')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
+                            <label for="project_id" class="required">Proyectos</label>
+                            <select wire:model="project_id" class="form-control select2" name="project_id" style="width: 100%;">
+                                <option value="">Seleccione un proyecto</option>
+                                @foreach($project as $project)
+                                    <option value="{{$project->id}}" {{old('$project_id') == $project_id ? 'selected' : ''}}>
+                                        {{ $project->name }}
+                                    </option>
+                                @endforeach
                             </select>
+                            @if($errors->has('$project_id'))
+                                <span class="text-danger">
+                                    <strong>{{$errors->first($project_id)}}</strong>
+                                </span>
+                            @endif
                         </div>
 
                         <div class="form-group">
-                            <label for="task_status">Status del proyectos</label>
-                            <select type="text" wire:model.defer="state.status" class="form-control select2" name="user_id" style="width: 100%;">
+                            <label for="task_status">Status del proyecto</label>
+                            <select wire:model="task_status" class="form-control {{$errors->has('task_status') ? 'is_invalid' : ''}}" name="task_status"
+                                    id="task_status" required>
                                 <option value="">Seleccione un status</option>
-                                @error('status_id')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
+                                @foreach(App\Models\Tasks::STATUS as $status)
+                                    <option value="{{$status}}" {{old('$status') == $status ? 'selected' : ''}}>{{$status}}</option>
+                                @endforeach
                             </select>
+                            @if($errors->has('$status'))
+                                <div class="text-danger">
+                                    {{$errors->first('$status')}}
+                                </div>
+                            @endif
                         </div>
-
-
-                    </div>
-
-
+                    </form>
                 </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                        <i class="fa-times mr-1"></i>Cancelar</button>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fa fa-save mr-1"></i>
-                        @if($showEditModal)
-                            <span>Guardar Cambios</span>
-                        @else
-                            <span>Guardar</span>
-                        @endif
-                    </button>
-                </div>
-            </div>
-        </form>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
 
-<div class="modal fade" id="confirmationModal" tabindex="1" role="dialog"
-     aria-labelledby="exampleModalLabel" aria-hidden="true" wire:ignore.self>
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5>Eliminar cliente</h5>
-            </div>
-            <div class="modal-body">
-                <h4>Esta seguro que de sea eliminar este cliente?</h4>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                    <i class="fa-times mr-1"></i>Cancelar</button>
-                <button type="button" wire:click.prevent="deleteClient" class="btn btn-danger">
-                    <i class="fa fa-trash mr-1">Eliminar Cliente</i>
-                </button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Cerrar</button>
+                    <button type="button" wire:click.prevent="store()" class="btn btn-primary">Guardar</button>
+                </div>
             </div>
         </div>
+
     </div>
-</div>
-<!-- /.modal-dialog -->
 </div>

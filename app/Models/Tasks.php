@@ -13,7 +13,7 @@ class Tasks extends Model
         'name',
         'description',
         'deadline',
-        'task',
+        'task_status',
         'user_id',
         'client_id',
         'project_id'

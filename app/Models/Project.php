@@ -32,7 +32,7 @@ class Project extends Model
     }
     public function client()
     {
-        return $this->belongsTo('App\Models\Client', 'id', 'client_id');
+        return $this->belongsTo('App\Models\Client', 'id', 'client_id', 'contact_name');
     }
     public function tasks()
     {

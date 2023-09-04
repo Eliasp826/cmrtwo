@@ -71,16 +71,31 @@
                                                 <td>{{$project->status}}</td>
                                                 <td>{{$project->user->name}}</td>
                                                 <td>{{$project->client_id}}</td>
-                                                <td width="90">
-                                                    <div class="dropdown">
+                                                <td class="text-center">
+                                                    <div class="text-center">
+
+                                                        <a class="btn btn-primary" title="Edit"
+                                                        data-toggle="modal" data-target="#updateDataModal" wire:click="edit({{$project->id}})">
+                                                            <i class="fa fa-edit"></i></a>
+
+                                                            <a class="btn btn-danger" title="delete"
+                                                               onclick="confirm('Confirm Delete Project id {{$project->id}}? \nDeleted Projects cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$project->id}})">
+                                                                <i class="fas fa-trash mr-2"></i>
+
+                                                            </a>
+                                                    </div>
+
+                                                   <!-- <div class="dropdown">
                                                         <a class="btn btn-sm btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
                                                             Actions
                                                         </a>
                                                     <ul class="dropdown-menu">
+
                                                         <li><a data-toggle="modal" data-target="#updateDataModal" class="dropdown-item" wire:click="edit({{$project->id}})"><i class="fa fa-edit"></i> Edit </a></li>
                                                         <li><a  class="dropdown-item" onclick="confirm('Confirm Delete Project id {{$project->id}}? \nDeleted Projects cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$project->id}})"><i class="fa fa-trash"></i> Delete </a></li>
                                                     </ul>
-                                                    </div>
+                                                    </div> -->
+
                                                 </td>
                                             </tr>
                                         @endforeach
