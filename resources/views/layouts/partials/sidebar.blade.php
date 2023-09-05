@@ -39,7 +39,8 @@
                 <li class="nav-item menu-open">
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link active">
+                            <a href="{{ route('panel.control') }}" class="nav-link" {{ request()->is
+                                      ('panel.control') ? 'active' : ''}}>
                                 <i class="fas fa-tachometer-alt"></i>
                                 <p>Panel de Control</p>
                             </a>
@@ -52,6 +53,94 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="nav-header">Gestor de Clientes</li>
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Clientes
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('client.manager') }}" class="nav-link" {{ request()->is
+                                      ('client.manager') ? 'active' : ''}}>
+                                <i class="nav-icon fas fa-th-list m-1"></i>
+                                <p>Todo los Clientes
+                                    <span class="right badge badge-danger">New</span>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user-astronaut m-1"></i>
+                                <p>Nuevo Clientes
+                                    <span class="right badge badge-danger">New</span></p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-header">Gestor Proyectos</li>
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Proyectos
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('project.index') }}" class="nav-link" {{ request()->is
+                            ('project.index') ? 'active' : ''}}>
+                                <i class="nav-icon fas fa-th-list m-1"></i>
+                                <p>Todo los Proyectos
+                                    <span class="right badge badge-danger">New</span>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-chalkboard m-1"></i>
+                                <p>Nuevo Proyectos
+                                    <span class="right badge badge-danger">New</span></p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-header">Gestor Tarea</li>
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Tarea
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('tarea.pendiente')}}" class="nav-link" {{ request()->is
+                        ('tarea.pendiente') ? 'active' : ''}}>
+                                <i class="nav-icon fas fa-th-list m-1"></i>
+                                <p>Todo las Tarea
+                                    <span class="right badge badge-danger">New</span>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-chalkboard m-1"></i>
+                                <p>Nuevo Tarea
+                                    <span class="right badge badge-danger">New</span></p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="nav-header">Gestor de Usuario</li>
                 <li class="nav-item menu-open">
                     <a href="#" class="nav-link">
@@ -81,41 +170,17 @@
                     </ul>
                 </li>
 
-                <li class="nav-header">Gertion de Cliente</li>
+                <li class="nav-header"></li>
                 <li class="nav-item">
-                    <a href="{{ route('client.manager') }}" class="nav-link" {{ request()->is
-                        ('client.manager') ? 'active' : ''}}>
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-user-astronaut"></i>
                         <p>
-                           Clientes
+                            Cita
                             <span class="right badge badge-danger">New</span>
                         </p>
                     </a>
                 </li>
 
-                <li class="nav-header">Gestion de Proyecto</li>
-                <li class="nav-item">
-                    <a href="{{ route('project.index') }}" class="nav-link" {{ request()->is
-                            ('project.index') ? 'active' : ''}}>
-                        <i class="nav-icon fas fa-chalkboard"></i>
-                        <p>
-                            Proyectos
-                            <span class="right badge badge-danger">New</span>
-                        </p>
-                    </a>
-                </li>
-
-                <li class="nav-header">Gestión de tarea</li>
-                <li class="nav-item">
-                    <a href="{{route('tarea.pendiente')}}" class="nav-link" {{ request()->is
-                        ('tarea.pendiente') ? 'active' : ''}}>
-                        <i class="nav-icon fas fa-user-astronaut"></i>
-                        <p>
-                            Tarea
-                            <span class="right badge badge-danger">New</span>
-                        </p>
-                    </a>
-                </li>
 
                 <li class="nav-header">Configuracion</li>
                 <li class="nav-item">
@@ -123,7 +188,7 @@
                             ('project.index') ? 'active' : ''}}>
                         <i class="nav-icon fas fa-chalkboard"></i>
                         <p>
-                            Proyectos
+                            Perfil
                             <span class="right badge badge-danger">New</span>
                         </p>
                     </a>

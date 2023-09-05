@@ -6,9 +6,10 @@ use App\Http\Livewire\Admin\UserList;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Client\ClientManager;
 use App\Http\Livewire\Project\ProjectManager;
-use App\Http\Livewire\Project\CreateProject;
-use App\Http\Livewire\Project\EditProject;
+//use App\Http\Livewire\Project\CreateProject;
+//use App\Http\Livewire\Project\EditProject;
 use App\Http\Livewire\Task\TaskManager;
+use App\Http\Livewire\PControl\PanelControl;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,8 @@ Route::get('/usuarios', UserList::class)
 //Route de clientes//
 Route::get('/clientes', ClientManager::class)
     ->name('client.manager');
+Route::get('/clientes/{client}', ClientManager::class, 'show')
+    ->name('clients.show');
 
 //Route de proyectos/
 Route::get('/proyectos', ProjectManager::class)
@@ -48,3 +51,7 @@ Route::get('/proyectos', ProjectManager::class)
 //Route de Tarea//
 Route::get('/tarea', taskmanager::class)
     ->name('tarea.pendiente');
+
+//Route de Panel Control/
+Route::get('/pcontrol', panelcontrol::class)
+    ->name('panel.control');

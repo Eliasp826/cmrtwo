@@ -83,14 +83,19 @@
 
                                     <td class="text-center">
 
+                                        <a href="{{route('clients.show', $client->id)}}"
+                                           wire:click.prevent="show" class="btn btn-info" title="view">
+                                            <i class="fas fa-solid fa-eye mr2"></i>
+                                        </a>
+
                                         <a href="" wire:click.prevent="edit({{ $client }})"
                                            class="btn btn-primary" title="Edit">
-                                            <i class="fas fa-user-edit mr-2"></i>
+                                            <i class="fas fa-user-edit mr2"></i>
                                         </a>
 
                                         <a href="" wire:click.prevent="confirmUserRemoval({{ $client->id }})"
                                            class="btn btn-danger" title="delete">
-                                            <i class="fas fa-trash mr-2"></i>
+                                            <i class="fas fa-trash mr2"></i>
                                         </a>
 
                                     </td>
@@ -98,7 +103,7 @@
                             @endforeach
                             </tbody>
                         </table>
-                        <div class="card-footer d-flex justify-content-end">
+                        <div class="d-flex justify-content-end">
                             {{ $clients->links() }}
                         </div>
                     </div>

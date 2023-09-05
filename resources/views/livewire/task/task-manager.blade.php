@@ -71,7 +71,7 @@
                                             <td>{{$task->task_status}}</td>
                                             <td>{{$task->project->name}}</td>
                                             <td>{{$task->user->name}}</td>
-                                            <td>{{$task->client_id->contact_name}}</td>
+                                            <td>{{$task->client->contact_name}}</td>
                                             <td class="text-center">
                                                 <div class="text-center">
 

@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Client;
 
 use App\Models\Client;
 use App\Models\User;
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -23,6 +24,7 @@ class ClientManager extends Component
     public $state = [];
 
     public $clientIdBeingRemoved = null;
+
 
     public function addNew()
     {
@@ -90,6 +92,14 @@ class ClientManager extends Component
         $this->client = $client;
         $this->state = $client->toArray();
         $this->dispatchBrowserEvent('show-form');
+    }
+
+    public function show($id)
+    {
+        $client = Client::findOrFail($id);
+        dd($client);
+        return view('clients.show',
+            compact('client'));
     }
     public function render()
     {

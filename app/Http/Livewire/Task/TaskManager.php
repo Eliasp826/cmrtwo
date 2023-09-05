@@ -64,7 +64,7 @@ class TaskManager extends Component
             'required'
         ],
         'deadline' =>[
-            'required', 'date',
+            'required',
         ],
         'task_status' =>[
             'required',
